@@ -7,6 +7,7 @@ public class GlassManager : MonoBehaviour
 {
     [SerializeField] private List<MoveGlass> _moveGlasses;
     [SerializeField] private Transform _ballTransform;
+    [SerializeField] private ShuffleManager _shuffleManager;
     public void DownAllGlasses()
     {
         foreach (var glass in _moveGlasses)
@@ -27,5 +28,9 @@ public class GlassManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.2f);
         _ballTransform.SetParent(_moveGlasses[2].transform);
+        if (_shuffleManager != null)
+        {
+            _shuffleManager.Shuffle(); 
+        }
     }
 }

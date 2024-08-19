@@ -362,6 +362,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798f2ed5fc2fae541a56c85542a28570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveGlasses:
+  - {fileID: 3469287837100819628}
+  - {fileID: 3469287838422418743}
+  - {fileID: 3469287837014079471}
+  shuffleDuration: 0.5
 --- !u!4 &302064191
 Transform:
   m_ObjectHideFlags: 0
@@ -662,6 +667,7 @@ MonoBehaviour:
   - {fileID: 3469287838422418743}
   - {fileID: 3469287837014079471}
   _ballTransform: {fileID: 9040235874027168714}
+  _shuffleManager: {fileID: 302064190}
 --- !u!4 &554978705
 Transform:
   m_ObjectHideFlags: 0
