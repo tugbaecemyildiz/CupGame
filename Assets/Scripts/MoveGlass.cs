@@ -20,11 +20,11 @@ public class MoveGlass : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (transform.childCount>0)
+        if (transform.childCount > 0)
         {
-            transform.GetChild(0).transform.parent=null;
+            transform.GetChild(0).transform.parent = null;
             StartCoroutine(ShowResultUI(true));
-            
+
         }
         else
         {
@@ -43,6 +43,6 @@ public class MoveGlass : MonoBehaviour
         {
             _loseUI.SetActive(true);
         }
-        
+
     }
 }

@@ -30,7 +30,7 @@ public class GlassManager : MonoBehaviour
         _ballTransform.SetParent(_moveGlasses[2].transform);
         if (_shuffleManager != null)
         {
-            _shuffleManager.Shuffle(); 
+            _shuffleManager.Shuffle();
         }
     }
 }
