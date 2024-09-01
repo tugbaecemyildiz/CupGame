@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014a744308137ad4b99513504f3f306a, type: 3}
+  m_Name: Thor
+  m_EditorClassIdentifier: 
+  _characterName: Thor
+  _characterImage: {fileID: 21300000, guid: b433a4dd40893ef4d850844c00806ba7, type: 3}
+  _characterDescription: The mighty god of thunder, Thor wields the enchanted hammer
+    Mjolnir with unparalleled strength. Protector of Midgard, his fury is a force
+    of nature, feared by giants and foes.
+  _cardImage: {fileID: 21300000, guid: 89ee21982a6a03347b73d043de1b932e, type: 3}
+  _cardBackImage: {fileID: 21300000, guid: 92336bb0f53c7e347a6216a4ef8e53c7, type: 3}

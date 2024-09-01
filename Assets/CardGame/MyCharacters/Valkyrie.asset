@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014a744308137ad4b99513504f3f306a, type: 3}
+  m_Name: Valkyrie
+  m_EditorClassIdentifier: 
+  _characterName: VALKYRIE
+  _characterImage: {fileID: 21300000, guid: 60556c78a4f328c41afc8971b654f367, type: 3}
+  _characterDescription: Fierce warrior maidens, the Valkyries choose the bravest
+    of the fallen to join Odin's hall. Their presence on the battlefield is both
+    a blessing and a portent of death.
+  _cardImage: {fileID: 21300000, guid: a159dee625af7ee4db5631b5ee50ee22, type: 3}
+  _cardBackImage: {fileID: 21300000, guid: 92336bb0f53c7e347a6216a4ef8e53c7, type: 3}
