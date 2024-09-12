@@ -14,7 +14,7 @@ public class PrizeController : MonoBehaviour
     [SerializeField] private Sprite _kokorecSprite;
     [SerializeField] private Sprite _loseAllSprite;
 
-    public void ShowPrize(string prizeType) //prize panel iþlemleri
+    public void ShowPrize(string prizeType)
     {
         switch (prizeType)
         {
@@ -40,9 +40,9 @@ public class PrizeController : MonoBehaviour
 
         _prizePanel.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutCubic);
     }
+
     public void BackButton()
     {
         _prizePanel.SetActive(false);
     }
-
 }

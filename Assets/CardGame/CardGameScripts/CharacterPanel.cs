@@ -8,7 +8,7 @@ public class CharacterPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _characterDescriptionText;
     [SerializeField] private Image _characterImage;
 
-    private CardManager _cardManager;
+    [SerializeField] private CardManager _cardManager;
 
     public void Setup(MythologicalCharacter character)
     {
@@ -18,6 +18,7 @@ public class CharacterPanel : MonoBehaviour
 
         gameObject.SetActive(true);
     }
+
     public void HidePanel()
     {
         gameObject.SetActive(false);

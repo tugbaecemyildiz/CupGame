@@ -13,10 +13,12 @@ public class CardFlip : MonoBehaviour
     {
         cardFront.GetComponent<SpriteRenderer>().sprite = frontSprite;
     }
+
     public void SetCardBack(Sprite backSprite)
     {
         cardBack.GetComponent<SpriteRenderer>().sprite = backSprite;
     }
+
     public void SetCardManager(CardManager manager)
     {
         cardManager = manager;

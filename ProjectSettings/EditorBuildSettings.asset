@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WheelOfFortune.unity
     guid: 05bd3a4a1fce0ee45865ea3a90bf76ff
+  - enabled: 1
+    path: Assets/Scenes/CardGame.unity
+    guid: 04ef9a73191e63943982f7086c0ccc3d
+  - enabled: 1
+    path: Assets/Scenes/SuikaGame.unity
+    guid: 9c483dba7082eca4bb34774f66b90e3c
+  - enabled: 1
+    path: Assets/Scenes/SuikaGame3D.unity
+    guid: 56be73d9b78bbc54c9fffdb6a87aa4aa
   m_configObjects: {}

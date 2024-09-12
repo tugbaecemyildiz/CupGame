@@ -7,7 +7,7 @@ public class Spinning : MonoBehaviour
     [SerializeField] private NeedleController _needlect;
     public bool canSpin = true;
 
-    public void RotationWheel() //360-1440 arasýnda döndür
+    public void RotationWheel()
     {
         if (canSpin)
         {

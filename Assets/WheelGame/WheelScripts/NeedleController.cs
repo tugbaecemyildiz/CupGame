@@ -6,15 +6,11 @@ public class NeedleController : MonoBehaviour
     [SerializeField] private PrizeController _prizeController;
     public ScoreManager scoreManager;
     
-
-    private void Start()
-    {
-        
-    }
     public void SpinningEnded()
     {
         isSpinning = false;
     }
+
     public bool GetSpinning()
     {
         return isSpinning;
@@ -24,7 +20,6 @@ public class NeedleController : MonoBehaviour
     {
         if (!isSpinning)
         {
-            // Ödül iþlemleri
             if (collision.CompareTag("Ayran"))
             {
                 _prizeController.ShowPrize("Ayran");
@@ -45,7 +40,7 @@ public class NeedleController : MonoBehaviour
                 _prizeController.ShowPrize("Loser");
                 scoreManager.ResetScore();
             }
-            isSpinning = true; // Ödül iþlemi tamamlandýktan sonra yeniden dönmeye hazýr
+            isSpinning = true;
         }
     }
 }

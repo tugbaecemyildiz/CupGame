@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,10 +12,22 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+
     public void GameThree()
     {
         SceneManager.LoadScene(3);
     }
+
+    public void GameFour()
+    {
+        SceneManager.LoadScene(4);
+    }
+
+    public void GameFive()
+    {
+        SceneManager.LoadScene(5);
+    }
+
     public void BackMainMenu()
     {
         SceneManager.LoadScene(0);

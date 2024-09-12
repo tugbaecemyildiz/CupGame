@@ -44,11 +44,6 @@ public class CardManager : MonoBehaviour
             cardFlip.SetCardBack(shuffledCharacters[i].CardBack);
             cardFlip.SetCharacter(shuffledCharacters[i]);
             cardFlip.SetCardManager(this);
-
-
-            CardDisplay cardDisplay = card.GetComponent<CardDisplay>();
-            cardDisplay.character = shuffledCharacters[i];
-            cardDisplay.SetupCharacter(); 
    
             cards.Add(card);  
         }
