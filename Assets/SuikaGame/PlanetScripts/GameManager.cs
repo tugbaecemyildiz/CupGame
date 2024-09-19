@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Collider2D spawnAreaCollider;
 
     [SerializeField] private int initialMoves = 50;
-    [SerializeField] private int movesReductionPerLevel = 10;
+    [SerializeField] private int movesReductionPerLevel = 5;
 
     private PlanetObject _previewPlanet;
     private Camera _mainCamera;
@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     private int _nextPlanetIndex;
     private int _level = 1;
     private int _maxLevel = 5;
+
+    private int _maxSpawnedIndex = 2;
+    private int _currentSpawnedIndex;
 
     private bool _isBonusActive = false;
     private bool _canSpawn = true;
@@ -46,7 +49,7 @@ public class GameManager : MonoBehaviour
 
             if (_movesLeft <= 0)
             {
-                GameOver();
+                GameOverLose();
             }
         }
     }
@@ -65,7 +68,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        _nextPlanetIndex = Random.Range(0, settings.SpritesCount - 1);
+        _currentSpawnedIndex = _maxSpawnedIndex;
+        _nextPlanetIndex = Random.Range(0, _currentSpawnedIndex);
         SetPreview(_nextPlanetIndex);
         SetMovesForLevel();
 
@@ -115,6 +119,7 @@ public class GameManager : MonoBehaviour
     {
         _level++;
         _lastMoves += _movesLeft;
+        _currentSpawnedIndex = _maxSpawnedIndex;
         if (_level >= 6)
         {
             GameWin();
@@ -125,19 +130,22 @@ public class GameManager : MonoBehaviour
 
         SetMovesForLevel();
         DestroyAllChildren(spawnParent);
+
+        _nextPlanetIndex = Random.Range(0, _currentSpawnedIndex);
+        SetPreview(_nextPlanetIndex);
     }
 
     private void GameWin()
     {
         scoreManager.SetHighScore(_lastMoves);
-        GameOver();
+        GameOverWin();
     }
 
     private void SetMovesForLevel()
     {
         if (_level > _maxLevel)
         {
-            GameOver();
+            GameOverWin();
         }
         else
         {
@@ -166,7 +174,7 @@ public class GameManager : MonoBehaviour
 
         Destroy(_previewPlanet?.gameObject);
 
-        _nextPlanetIndex = Random.Range(0, settings.SpritesCount - 1);
+        _nextPlanetIndex = Random.Range(0, _currentSpawnedIndex);
         SetPreview(_nextPlanetIndex);
 
         MovesLeft--;
@@ -209,6 +217,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        _currentSpawnedIndex = nextType > _currentSpawnedIndex ? nextType : _currentSpawnedIndex;
+
         Destroy(first.gameObject);
 
         second.isBonus = false;
@@ -245,12 +255,20 @@ public class GameManager : MonoBehaviour
         suikaGameUI.AddMoves(_movesLeft);
     }
 
-    public void GameOver()
+    public void GameOverLose()
     {
         _canSpawn = false;
         Time.timeScale = 0;
         suikaGameUI.ActivateTryAgainPanel();
     }
+
+    public void GameOverWin()
+    {
+        _canSpawn = false;
+        Time.timeScale = 0;
+        suikaGameUI.ActivateWinGamePanel();
+    }
+
     private void DestroyAllChildren(Transform parent)
     {
         foreach (Transform child in parent)

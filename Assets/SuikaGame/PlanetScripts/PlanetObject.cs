@@ -36,11 +36,11 @@ public class PlanetObject : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         if (other.collider.CompareTag("GameAreaBoundary"))
         {
-            GameManager.Instance.GameOver();
+            GameManager.Instance.GameOverLose();
             return;
         }
 

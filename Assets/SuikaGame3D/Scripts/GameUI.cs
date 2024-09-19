@@ -11,7 +11,8 @@ public class GameUI : MonoBehaviour
     [SerializeField] public Button bonusButton;
     [SerializeField] public Button addMovesButton;
     [SerializeField] private GameObject levelUpPanel;
-    [SerializeField] private GameObject tryAgainPanel;
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject losePanel;
 
     public void UpdateLevelText(int level)
     {
@@ -51,8 +52,17 @@ public class GameUI : MonoBehaviour
 
     public void ActivateTryAgainPanel()
     {
-        tryAgainPanel.SetActive(true);
-        tryAgainPanel.transform.DOScale(1.2f, 0.5f).OnComplete(() =>
+        winPanel.SetActive(true);
+        winPanel.transform.DOScale(1.2f, 0.5f).OnComplete(() =>
+        {
+            levelUpPanel.transform.DOScale(1f, 0.3f);
+        });
+    }
+
+    public void ActivateGameLosePanel()
+    {
+        losePanel.SetActive(true);
+        losePanel.transform.DOScale(1.2f, 0.5f).OnComplete(() =>
         {
             levelUpPanel.transform.DOScale(1f, 0.3f);
         });

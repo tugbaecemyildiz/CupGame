@@ -3,29 +3,23 @@ using UnityEngine;
 
 public class Planet3DObject : MonoBehaviour
 {
-    [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private GameObject itemPrefab;
     public int planetIndex { get; private set; }
     public bool SendedMergeSignal { get; private set; }
     public float scale { get; private set; }
     public bool isBonus = false;
 
-    public void PreparePlanet(int index, Texture texture, float scale, float colliderRadius)
+    public void PreparePlanet(int index,  float scale )
     {
-        meshRenderer.material.mainTexture = texture;
+       
         planetIndex = index;
         transform.localScale = Vector3.one * scale;
         this.scale = scale;
 
-        Renderer renderer = GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            renderer.material.mainTexture = texture;
-        }
         if (planetIndex == 6)
         {
             StartCoroutine(DestroyPlanet(1f));
         }
-
     }
 
     private IEnumerator DestroyPlanet(float delay)
@@ -35,25 +29,30 @@ public class Planet3DObject : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionStay(Collision other)
+    private void OnCollisionEnter(Collision other)
     {
-
         Planet3DObject planet3DObject = other.transform.GetComponent<Planet3DObject>();
-        if (planet3DObject == null) return;
+    if (planet3DObject == null) return;
 
-        if (planet3DObject.planetIndex != planetIndex && !planet3DObject.isBonus) return;
+    if (planet3DObject.planetIndex != planetIndex && !planet3DObject.isBonus) return;
 
-        if (planet3DObject.SendedMergeSignal) return;
+    // Eðer birleþtirme sinyali daha önce gönderilmiþse, birleþmeyi engelle
+    if (SendedMergeSignal || planet3DObject.SendedMergeSignal) return;
 
-        SendedMergeSignal = true;
-        Planet3DManager.Instance.Merge3D(this, planet3DObject);
+    // Birleþtirme sinyali gönderildi ve birleþme iþlemi yapýlýr
+    SendedMergeSignal = true;
+
+    // Ýkinci birleþme olmasýný önlemek için nesneleri devre dýþý býrak
+    planet3DObject.SendedMergeSignal = true;
+
+    Planet3DManager.Instance.Merge3D(this, planet3DObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("GameAreaBoundary"))
         {
-            Planet3DManager.Instance.GameOver();
+            Planet3DManager.Instance.GameLoseOver();
             return;
         }
     }

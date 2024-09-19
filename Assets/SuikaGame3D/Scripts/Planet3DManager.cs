@@ -15,7 +15,7 @@ public class Planet3DManager : MonoBehaviour
     [SerializeField] private LayerMask raycastLayerMask;
 
     [SerializeField] private int initialMoves = 50;
-    [SerializeField] private int movesReductionPerLevel = 10;
+    [SerializeField] private int movesReductionPerLevel = 5;
 
     private Planet3DObject _preview3DPlanet;
     private Camera _camera;
@@ -29,6 +29,8 @@ public class Planet3DManager : MonoBehaviour
     private int _lastMoves;
     private int _level = 1;
     private int _maxLevel = 5;
+    private int _maxSpawnedIndex = 2;
+    private int _currentSpawnedIndex;
 
     private bool IsClick => Input.GetKeyDown(KeyCode.Space);
 
@@ -46,7 +48,9 @@ public class Planet3DManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
-        _next3DPlanetIndex = Random.Range(0, planetSettings.MeshCount - 1);
+        _currentSpawnedIndex = _maxSpawnedIndex;
+        _next3DPlanetIndex = Random.Range(0, _currentSpawnedIndex);
+        Debug.Log("Index: " + _next3DPlanetIndex);
         SetPreview(_next3DPlanetIndex);
         SetMovesForLevel();
 
@@ -76,7 +80,7 @@ public class Planet3DManager : MonoBehaviour
 
             if (_movesLeft <= 0)
             {
-                GameOver();
+                GameLoseOver();
             }
         }
     }
@@ -88,13 +92,11 @@ public class Planet3DManager : MonoBehaviour
             Destroy(_preview3DPlanet.gameObject);
         }
 
-        Planet3DObject prefab = planetSettings.SpawnObject;
-        _preview3DPlanet = Instantiate(prefab, spawnPoint3D.position, Quaternion.identity).GetComponent<Planet3DObject>();
+        GameObject prefab = planetSettings.GetPrefab(index);
+        _preview3DPlanet = Instantiate(prefab, spawnPoint3D.position, prefab.transform.localRotation).GetComponent<Planet3DObject>();
         _preview3DPlanet.PreparePlanet(
             index,
-            planetSettings.GetTexture(index),
-            planetSettings.GetScale(index),
-            planetSettings.GetRadius(index)
+            planetSettings.GetScale(index)
         );
         _preview3DPlanet.GetComponent<Rigidbody>().isKinematic = true;
         _preview3DPlanet.GetComponent<Collider>().isTrigger = true;
@@ -103,16 +105,14 @@ public class Planet3DManager : MonoBehaviour
 
     private void SpawnPlanet3D(int index, Vector3 position)
     {
-        Planet3DObject prefab = planetSettings.SpawnObject;
+        GameObject prefab = planetSettings.GetPrefab(index);
 
-        Planet3DObject planetObject = Instantiate(prefab, position, Quaternion.identity);
+        Planet3DObject planetObject = Instantiate(prefab, position, prefab.transform.localRotation).GetComponent<Planet3DObject>();
         planetObject.transform.SetParent(spawnParent);
 
-        Texture texture = planetSettings.GetTexture(index);
         float scale = planetSettings.GetScale(index);
-        float radius = planetSettings.GetRadius(index);
 
-        planetObject.PreparePlanet(index, texture, scale, radius);
+        planetObject.PreparePlanet(index, scale);
     }
 
     private void SetBonusPreview()
@@ -122,13 +122,11 @@ public class Planet3DManager : MonoBehaviour
             Destroy(_preview3DPlanet.gameObject);
         }
 
-        Planet3DObject prefab = planetSettings.SpawnObject;
-        _preview3DPlanet = Instantiate(prefab, spawnPoint3D.position, Quaternion.identity).GetComponent<Planet3DObject>();
+        GameObject prefab = planetSettings.GetBonusPrefab();
+        _preview3DPlanet = Instantiate(prefab, spawnPoint3D.position, prefab.transform.localRotation).GetComponent<Planet3DObject>();
         _preview3DPlanet.PreparePlanet(
             -1,
-            planetSettings.GetBonusTexture(),
-            planetSettings.GetBonusScale(),
-            planetSettings.GetBonusRadius()
+            planetSettings.GetBonusScale()
         );
         _preview3DPlanet.GetComponent<Rigidbody>().isKinematic = true;
         _preview3DPlanet.GetComponent<Collider>().isTrigger = true;
@@ -136,16 +134,14 @@ public class Planet3DManager : MonoBehaviour
 
     private void SpawnBonusPlanet(Vector3 position)
     {
-        Planet3DObject prefab = planetSettings.SpawnObject;
-        Planet3DObject planetObject = Instantiate(prefab, position, Quaternion.identity);
+        GameObject prefab = planetSettings.GetBonusPrefab();
+        Planet3DObject planetObject = Instantiate(prefab, position, prefab.transform.localRotation).GetComponent<Planet3DObject>();
         planetObject.transform.SetParent(spawnParent);
 
         planetObject.isBonus = true;
         planetObject.PreparePlanet(
             -1,
-            planetSettings.GetBonusTexture(),
-            planetSettings.GetBonusScale(),
-            planetSettings.GetBonusRadius()
+            planetSettings.GetBonusScale()
         );
     }
     private void ActivateBonusPlanet()
@@ -177,7 +173,7 @@ public class Planet3DManager : MonoBehaviour
 
         Destroy(_preview3DPlanet?.gameObject);
 
-        _next3DPlanetIndex = Random.Range(0, planetSettings.MeshCount - 1);
+        _next3DPlanetIndex = Random.Range(0, _currentSpawnedIndex);
         SetPreview(_next3DPlanetIndex);
         MovesLeft--;
     }
@@ -185,26 +181,35 @@ public class Planet3DManager : MonoBehaviour
     public void Merge3D(Planet3DObject first, Planet3DObject second)
     {
         int nextPlanet = first.planetIndex + 1;
-        if (nextPlanet >= planetSettings.MeshCount)
+        if (nextPlanet >= planetSettings.PrefabCount)
         {
             Destroy(first.gameObject);
             return;
         }
+
+        _currentSpawnedIndex = nextPlanet > _currentSpawnedIndex ? nextPlanet : _currentSpawnedIndex;
 
         Destroy(first.gameObject);
 
         second.isBonus = false;
         second.PreparePlanet(
             nextPlanet,
-            planetSettings.GetTexture(nextPlanet),
-            planetSettings.GetScale(nextPlanet),
-            planetSettings.GetRadius(nextPlanet));
+            planetSettings.GetScale(nextPlanet));
+
+        GameObject newObject = planetSettings.GetPrefab(nextPlanet);
+
+        Planet3DObject newPlanet = Instantiate(newObject, second.transform.position, newObject.transform.localRotation).GetComponent<Planet3DObject>();
+        newPlanet.PreparePlanet(index: nextPlanet, scale: planetSettings.GetScale(nextPlanet));
+        newPlanet.transform.SetParent(spawnParent);
+
+        Destroy(second.gameObject);
     }
 
     public void UpdateGameLevel()
     {
         _level++;
         _lastMoves += _movesLeft;
+        _currentSpawnedIndex = _maxSpawnedIndex;
         if (_level >= 6)
         {
             GameWin();
@@ -253,5 +258,11 @@ public class Planet3DManager : MonoBehaviour
         _canSpawn3D = false;
         Time.timeScale = 0;
         gameUI.ActivateTryAgainPanel();
+    }
+    public void GameLoseOver()
+    {
+        _canSpawn3D = false;
+        Time.timeScale = 0;
+        gameUI.ActivateGameLosePanel();
     }
 }

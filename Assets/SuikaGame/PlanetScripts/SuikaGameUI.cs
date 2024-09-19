@@ -12,6 +12,7 @@ public class SuikaGameUI : MonoBehaviour
     [SerializeField] public Button addMovesButton;
     [SerializeField] private GameObject levelUpPanel;
     [SerializeField] private GameObject tryAgainPanel;
+    [SerializeField] private GameObject winGamePanel;
 
     public void UpdateLevelText(int level)
     {
@@ -53,6 +54,15 @@ public class SuikaGameUI : MonoBehaviour
     {
         tryAgainPanel.SetActive(true);
         tryAgainPanel.transform.DOScale(1.2f, 0.5f).OnComplete(() =>
+        {
+            levelUpPanel.transform.DOScale(1f, 0.3f);
+        });
+    }
+
+    public void ActivateWinGamePanel()
+    {
+        winGamePanel.SetActive(true);
+        winGamePanel.transform.DOScale(1.2f, 0.5f).OnComplete(() =>
         {
             levelUpPanel.transform.DOScale(1f, 0.3f);
         });

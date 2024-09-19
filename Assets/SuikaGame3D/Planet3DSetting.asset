@@ -12,31 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d37e1f6855500438ab4ac4a5275251, type: 3}
   m_Name: Planet3DSetting
   m_EditorClassIdentifier: 
-  prefab: {fileID: -8613438839452431753, guid: d5c06a217fc4c7946b6f98f3675f1fe3, type: 3}
-  textures:
-  - {fileID: 2800000, guid: a8454ec645b1f604d9fbe785bab6dabf, type: 3}
-  - {fileID: 2800000, guid: 33f3d0124da7c934e99e2081ed7a7e0a, type: 3}
-  - {fileID: 2800000, guid: 2f570657d0c6bd74293975e7aaac8127, type: 3}
-  - {fileID: 2800000, guid: 6c8d01c8b5132ca448b624f32400786e, type: 3}
-  - {fileID: 2800000, guid: 2e437132d1119de4ebd52e622b75186e, type: 3}
-  - {fileID: 2800000, guid: 21817194c133b8e44a0809a6608f961d, type: 3}
-  - {fileID: 2800000, guid: 7b6d9d19865ed914fb9cf52a46712d50, type: 3}
+  prefabs:
+  - {fileID: 6600502572260917273, guid: 250969f62c790244e8bf9d5d56785ee0, type: 3}
+  - {fileID: 2267131406256548491, guid: 8e4d1c03923c3be4b9580ea8b63774f1, type: 3}
+  - {fileID: 2432465642533669018, guid: 9a1552da5e8fe794299f760addee0f12, type: 3}
+  - {fileID: 5706533462618833019, guid: 3c6ad3e7926115e49adc073cb3a4644c, type: 3}
+  - {fileID: 7339083160518877303, guid: 1e07b740d3ef8c74b9d733ef32d88cb2, type: 3}
+  - {fileID: 6256843122213739758, guid: 190243cf518c23440b45e0fb6a987342, type: 3}
+  - {fileID: 8294858574289495486, guid: c99dc797f40385e459e1738e881f9d97, type: 3}
   scales:
-  - 0.1
-  - 0.2
-  - 0.3
-  - 0.4
-  - 0.5
-  - 0.6
-  - 0.7
-  radius:
-  - 0.1
-  - 0.2
-  - 0.3
-  - 0.4
-  - 0.5
-  - 0.6
-  - 0.7
-  bonusTexture: {fileID: 2800000, guid: 3db8228c0800c2f4382ed52c6377d58e, type: 3}
-  bonusScale: 0.4
-  bonusRadius: 0.4
+  - 12
+  - 12
+  - 12
+  - 12
+  - 12
+  - 12
+  - 20
+  bonusPrefab: {fileID: 1934424161073173956, guid: 2a736d2dfc684054c988474dbb0074b5, type: 3}
+  bonusScale: 15
