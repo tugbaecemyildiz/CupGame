@@ -12,7 +12,7 @@ public class Planet3DManager : MonoBehaviour
     [SerializeField] private Transform spawnPoint3D;
     [SerializeField] private Transform spawnParent;
 
-    [SerializeField] private LayerMask raycastLayerMask;
+    [SerializeField] private LayerMask _layerMask;
 
     [SerializeField] private int initialMoves = 50;
     [SerializeField] private int movesReductionPerLevel = 5;
@@ -32,7 +32,7 @@ public class Planet3DManager : MonoBehaviour
     private int _maxSpawnedIndex = 2;
     private int _currentSpawnedIndex;
 
-    private bool IsClick => Input.GetKeyDown(KeyCode.Space);
+    private bool IsClick => Input.GetMouseButtonDown(0);
 
     private void Awake()
     {
@@ -49,8 +49,9 @@ public class Planet3DManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         _currentSpawnedIndex = _maxSpawnedIndex;
+
         _next3DPlanetIndex = Random.Range(0, _currentSpawnedIndex);
-        Debug.Log("Index: " + _next3DPlanetIndex);
+
         SetPreview(_next3DPlanetIndex);
         SetMovesForLevel();
 
@@ -62,7 +63,8 @@ public class Planet3DManager : MonoBehaviour
     {
         if (IsClick)
         {
-            OnClicked();
+            if (MousePositionHit() != Vector3.zero)
+                OnClicked();
         }
         if (_preview3DPlanet != null)
         {
@@ -159,7 +161,7 @@ public class Planet3DManager : MonoBehaviour
         }
 
         Vector3 spawnPosition = spawnPoint3D.position;
-        spawnPosition.y -= 1;
+        spawnPosition.y -= 0.2f;
 
         if (_isBonusActive)
         {
@@ -264,5 +266,14 @@ public class Planet3DManager : MonoBehaviour
         _canSpawn3D = false;
         Time.timeScale = 0;
         gameUI.ActivateGameLosePanel();
+    }
+    public Vector3 MousePositionHit()
+    {
+        Ray mouse = _camera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(mouse, out RaycastHit hit, Mathf.Infinity, _layerMask))
+        {
+            return hit.point;
+        }
+        return Vector3.zero;
     }
 }
