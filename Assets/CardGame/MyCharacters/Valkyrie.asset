@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Valkyrie
   m_EditorClassIdentifier: 
   _characterName: VALKYRIE
-  _characterImage: {fileID: 21300000, guid: 60556c78a4f328c41afc8971b654f367, type: 3}
+  _characterImage: {fileID: 21300000, guid: a159dee625af7ee4db5631b5ee50ee22, type: 3}
   _characterDescription: Fierce warrior maidens, the Valkyries choose the bravest
     of the fallen to join Odin's hall. Their presence on the battlefield is both
     a blessing and a portent of death.

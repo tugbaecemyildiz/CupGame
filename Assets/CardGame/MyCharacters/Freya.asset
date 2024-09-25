@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Freya
   m_EditorClassIdentifier: 
   _characterName: Freya
-  _characterImage: {fileID: 21300000, guid: fae39a69eceadc04981bfae13e175666, type: 3}
+  _characterImage: {fileID: 21300000, guid: b9e70acb9d8024d46a33c392daed6ca6, type: 3}
   _characterDescription: The radiant goddess of love, beauty, and war, Freya leads
     the Valkyries in battle. She is as fierce as she is alluring, guiding fallen
     warriors to their eternal rest in Valhalla.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fenrir
   m_EditorClassIdentifier: 
   _characterName: FENRIR
-  _characterImage: {fileID: 21300000, guid: cf7bbc44eb54b104e8ce55f69094fa68, type: 3}
+  _characterImage: {fileID: 21300000, guid: f44fa586de3ea7d49bec36def428ea42, type: 3}
   _characterDescription: The monstrous wolf, born of Loki, destined to bring about
     the end of the gods. His power and ferocity are unmatched, and even the mightiest
     tremble at his impending wrath.

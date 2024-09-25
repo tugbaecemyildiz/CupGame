@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Njord
   m_EditorClassIdentifier: 
   _characterName: Njord
-  _characterImage: {fileID: 21300000, guid: 5373a54fd48c8c24fafad4b289fb665e, type: 3}
+  _characterImage: {fileID: 21300000, guid: b23829ae41907ca4fb8cd53e54297789, type: 3}
   _characterDescription: The god of the sea, wind, and wealth, Njord is the guardian
     of sailors and the bringer of bountiful harvests. His favor ensures safe voyages
     and prosperity.

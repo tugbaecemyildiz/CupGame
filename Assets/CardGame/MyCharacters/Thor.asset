@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Thor
   m_EditorClassIdentifier: 
   _characterName: Thor
-  _characterImage: {fileID: 21300000, guid: b433a4dd40893ef4d850844c00806ba7, type: 3}
+  _characterImage: {fileID: 21300000, guid: 89ee21982a6a03347b73d043de1b932e, type: 3}
   _characterDescription: The mighty god of thunder, Thor wields the enchanted hammer
     Mjolnir with unparalleled strength. Protector of Midgard, his fury is a force
     of nature, feared by giants and foes.

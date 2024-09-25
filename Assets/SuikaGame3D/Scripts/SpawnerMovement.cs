@@ -14,15 +14,8 @@ public class SpawnerMovement : MonoBehaviour
         _camera = Camera.main;
     }
 
-    private void Start()
-    {
-        //Cursor.visible = true;
-        //Cursor.lockState = CursorLockMode.Locked;
-    }
-
     private void Update()
     {
-        // Yeni
         Vector3 hit = Planet3DManager.Instance.MousePositionHit();
         if (hit != Vector3.zero)
         {
@@ -31,16 +24,8 @@ public class SpawnerMovement : MonoBehaviour
             float clampedX = Mathf.Clamp(hit.x, xBounds.x, xBounds.y);
             transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
         }
-
-        // --------------------------------
-
-        //float moveX = Input.GetAxis("Horizontal");
-        //Vector3 moveDirection = new Vector3(moveX, 0, 0).normalized;
-
-        //transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
     }
 
-    // Eski
     private void MoveWithJustMouseX()
     {
         float mouseX = Input.GetAxis("Mouse X");

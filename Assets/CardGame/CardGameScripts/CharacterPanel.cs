@@ -23,5 +23,6 @@ public class CharacterPanel : MonoBehaviour
     {
         gameObject.SetActive(false);
         _cardManager.canFlip = true;
+        _cardManager.canClick = true;
     }
 }

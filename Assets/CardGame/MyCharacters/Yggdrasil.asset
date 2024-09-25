@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Yggdrasil
   m_EditorClassIdentifier: 
   _characterName: YGGDRASIL
-  _characterImage: {fileID: 21300000, guid: 0c85de274c7cb234e9d5f66e6d5c55ee, type: 3}
+  _characterImage: {fileID: 21300000, guid: e5f991c061f9664408a02ede9dc7f40b, type: 3}
   _characterDescription: The World Tree, Yggdrasil, stands as the axis of the cosmos,
     connecting the Nine Realms. Its roots and branches span the universe, holding
     the fate of all worlds within its reach.

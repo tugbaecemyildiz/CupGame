@@ -8,8 +8,14 @@ public class CardFlip : MonoBehaviour
     public GameObject cardBack;
 
     private CardManager cardManager;
+    private CardMoves scoreManager;
     private MythologicalCharacter _character;
-    private bool isFrontVisible= false; //yeni eklendi
+    private bool isFrontVisible= false;
+
+    private void Start()
+    {
+        scoreManager = FindObjectOfType<CardMoves>();
+    }
 
     public void SetCardFront(Sprite frontSprite)
     {
@@ -28,49 +34,39 @@ public class CardFlip : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("onmousedown");
-        if (cardManager.canFlip && !isFrontVisible) //if (cardManager.canFlip)
+        if (cardManager.canFlip && !isFrontVisible)
             FlipCard(true);
     }
 
     public void FlipCard(bool flipToFront)
     {
-        Debug.Log("flipcard");
-        if (flipToFront && !isFrontVisible)//if (flip)
+        if (flipToFront && !isFrontVisible)
         {
             transform.DORotate(new Vector3(0, 90, 0), 0.2f).OnComplete(() =>
             {
-                //cardBack.SetActive(false);
-                //cardFront.SetActive(true);
                 transform.DORotate(new Vector3(0, 180, 0), 0.2f);
                 isFrontVisible = true;
                 cardManager?.CardRevealed(this);
-                //transform.DORotate(new Vector3(0, 180, 0), 0.2f);
-                //cardManager?.CardRevealed(this);
             });
         }
         else if(!flipToFront && isFrontVisible)
         {
             transform.DORotate(new Vector3(0, 90, 0), 0.2f).OnComplete(() =>
             {
-                //cardFront.SetActive(false);
-                //cardBack.SetActive(true);
                 transform.DORotate(new Vector3(0, 0, 0), 0.2f);
                 isFrontVisible = false;
-                //transform.DORotate(new Vector3(0, 0, 0), 0.2f);
             });
         }
     }
 
     public IEnumerator ShowPreview()
     {
-        Debug.Log("çalýþtým");
         transform.DORotate(new Vector3(0, 90, 0), 0.2f).OnComplete(() =>
         {
             transform.DORotate(new Vector3(0, 180, 0), 0.2f);
             isFrontVisible = true;
         });
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         transform.DORotate(new Vector3(0, 90, 0), 0.2f).OnComplete(() =>
         {
             transform.DORotate(new Vector3(0, 0, 0), 0.2f);

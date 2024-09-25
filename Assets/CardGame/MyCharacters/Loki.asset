@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Loki
   m_EditorClassIdentifier: 
   _characterName: LOKI
-  _characterImage: {fileID: 21300000, guid: 8f51312120859d74f8a572602450b1f3, type: 3}
+  _characterImage: {fileID: 21300000, guid: e6033b47db2a41b45b1b28b7c0aa2a7a, type: 3}
   _characterDescription: The cunning trickster of Asgard, Loki is a master of deception
     and chaos. His silver tongue and unpredictable nature make him both a valuable
     ally and a dangerous enemy.
